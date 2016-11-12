@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<project name="Dispatcher" default="war">
+
+
+    <target name="init">
+        <mkdir dir="target/classes"/>
+        <mkdir dir="dist"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac destdir="target/classes" debug="true" srcdir="src">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+
+    <path id="compile.classpath">
+        <fileset dir="web/WEB-INF/lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="war" depends="compile">
+        <war destfile="dist/AntExample.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="web"/>
+            <lib dir="web/WEB-INF/lib"/>
+            <classes dir="target/classes"/>
+        </war>
+    </target>
+</project>
