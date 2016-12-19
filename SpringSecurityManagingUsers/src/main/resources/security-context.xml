@@ -17,7 +17,8 @@
         <security:intercept-url pattern="/home" access="permitAll"/>
         <security:intercept-url pattern="/" access="permitAll"/>
         <security:intercept-url pattern="/static/**" access="permitAll"/>
-        <security:form-login></security:form-login>
+        <security:intercept-url pattern="/login" access="permitAll"/>
+        <security:form-login login-page="/login"></security:form-login>
     </security:http>
 
 </beans>
