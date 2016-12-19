@@ -1,0 +1,39 @@
+.formtable{
+    padding:10px;
+    border: 1px solid blue;
+}
+
+input[type=text]{
+    width: 250px;
+    margin-left: 10px;
+}
+
+textarea{
+    width: 250px;
+    height: 300px;
+    margin-left: 10px;
+}
+
+.label{
+    text-align: right;
+    vertical-align: top;
+}
+
+.control{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.error{
+    font-size: small;
+    color: red;
+    margin-left: 10px;
+
+
+}
+
+table,th, td{
+    /*padding:10px;*/
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
