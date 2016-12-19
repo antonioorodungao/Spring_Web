@@ -21,4 +21,5 @@
     </bean>
 
     <mvc:resources mapping="/static/**" location="WEB-INF/resources/"/>
+
 </beans>

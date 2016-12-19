@@ -77,7 +77,7 @@ public class OffersController {
     }
 
     @RequestMapping(value="/docreate", method=RequestMethod.POST)
-    public String doCreate(Model model, @Valid Offer offer, BindingResult result){
+    public String doCreate(Model model, @Valid Offer offer, BindingResult result){  //Binding Result is for checking the fields.
 
         if(result.hasErrors()){
             System.out.println("Form does not validate");
