@@ -32,6 +32,12 @@ textarea{
 
 }
 
+p.error{
+    font-size: large;
+    color: red;
+    margin-left: 10px;
+}
+
 table,th, td{
     /*padding:10px;*/
     border: 1px solid gray;
