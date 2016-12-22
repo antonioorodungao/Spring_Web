@@ -3,6 +3,8 @@ package com.caveofprogramming.spring.web.security.controller;
 import com.caveofprogramming.spring.web.security.dao.User;
 import com.caveofprogramming.spring.web.security.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,7 +53,17 @@ public class LoginController {
         user.setAuthority("user");
         user.setEnabled(true);
 
-        usersService.createUser(user);
+        if(usersService.isUserExists(user.getUsername())){
+            result.rejectValue("username", "duplicatekey.user");
+            return "createaccount";
+        }
+
+        try {
+            usersService.createUser(user);
+        }catch (DuplicateKeyException dk){
+            result.rejectValue("username", "duplicatekey.user");
+            return "createaccount";
+        }
 
         return "accountcreated";
 

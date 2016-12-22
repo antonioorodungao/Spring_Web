@@ -19,5 +19,13 @@ public class UsersService {
         return usersDAO.createUser(user);
     }
 
+    public boolean isUserExists(String username) {
+        return usersDAO.isUserExists(username);
+    }
+
+//    public boolean userExists(User user){
+//        return UsersDAO.getUser(user);
+//    }
+
 
 }

@@ -34,5 +34,15 @@ public class UsersDAO {
 
     }
 
+    public boolean isUserExists(String username) {
+        return jdbc.queryForObject("select count(*) from users where username=:username", new MapSqlParameterSource("username", username),Integer.class) >= 1;
+    }
 
+
+//    public static boolean getUser(User user) {
+//        BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
+////        jdbc.query(select )
+//
+//
+//    }
 }

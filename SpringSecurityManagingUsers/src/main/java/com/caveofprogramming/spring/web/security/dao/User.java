@@ -1,5 +1,6 @@
 package com.caveofprogramming.spring.web.security.dao;
 
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
@@ -12,17 +13,23 @@ import javax.validation.constraints.Size;
  */
 @Component("user")
 public class User {
+
     @NotNull
-    @Size(min = 5, message = "Username must be more 5 characters.")
+    @Size(min = 5)
+    @Pattern(regexp = "[A-Za-z0-9]+")
     private String username;
+
     @NotNull
-    @Size(min = 8, message = "Password should be equal or more than 8 characters.")
+    @Pattern(regexp = "^\\S+")
+    @Size(min = 8)
     private String password;
 
     private boolean enabled;
+
     @NotNull
-    @Pattern(regexp = ".+@.+\\..*", message = "Invalid email address.")
+    @Pattern(regexp = ".+@.+\\..*")
     private String email;
+
     private String authority;
 
     public User(String username, String password, boolean enabled, String email, String authority) {
