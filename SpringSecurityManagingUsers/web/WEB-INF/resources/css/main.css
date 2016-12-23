@@ -1,6 +1,15 @@
 .formtable{
     padding:10px;
-    border: 1px solid blue;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.header{
+    background-color: green;
+    font-weight: bold;
+}
+.row{
+    background-color: pink;
 }
 
 input[type=text]{
@@ -38,8 +47,16 @@ p.error{
     margin-left: 10px;
 }
 
-table,th, td{
+table{
     /*padding:10px;*/
-    border: 1px solid gray;
+    border: 2px solid black;
     border-collapse: collapse;
+}
+
+th{
+    padding: 4px;
+}
+
+td{
+    padding: 4px;
 }

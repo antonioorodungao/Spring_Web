@@ -1,6 +1,7 @@
 package com.caveofprogramming.spring.web.security.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -36,6 +37,10 @@ public class UsersDAO {
 
     public boolean isUserExists(String username) {
         return jdbc.queryForObject("select count(*) from users where username=:username", new MapSqlParameterSource("username", username),Integer.class) >= 1;
+    }
+
+    public List<User> getAllUsers() {
+        return jdbc.query("select * from users, authorities where users.username = authorities.username", new BeanPropertyRowMapper(User.class));
     }
 
 

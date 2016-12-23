@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by anton on 12/20/2016.
  */
@@ -21,6 +23,10 @@ public class UsersService {
 
     public boolean isUserExists(String username) {
         return usersDAO.isUserExists(username);
+    }
+
+    public List<User> getAllUsers() {
+        return usersDAO.getAllUsers();
     }
 
 //    public boolean userExists(User user){

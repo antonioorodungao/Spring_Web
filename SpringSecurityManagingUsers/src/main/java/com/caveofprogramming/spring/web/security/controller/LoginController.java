@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by anton on 12/19/2016.
@@ -32,6 +33,17 @@ public class LoginController {
     public void setUsersService(UsersService usersService) {
         this.usersService = usersService;
     }
+
+
+
+    @RequestMapping("/admin")
+    public String showAdmin(Model model){
+
+        List<User> users = usersService.getAllUsers();
+        model.addAttribute("users", users);
+        return "admin";
+    }
+
 
     @RequestMapping("/login")
     public String showLogin(@RequestParam (value="error", required = false)  String error) throws Exception{
