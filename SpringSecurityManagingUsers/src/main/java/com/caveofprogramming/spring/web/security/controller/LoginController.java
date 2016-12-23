@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -33,8 +34,14 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String showLogin() throws Exception{
-        return "login";
+    public String showLogin(@RequestParam (value="error", required = false)  String error) throws Exception{
+
+        if(error == null || error.equals("true")){
+            return "login";
+        }else{
+            return "home";
+        }
+
     }
 
     @RequestMapping("/loggedout")
