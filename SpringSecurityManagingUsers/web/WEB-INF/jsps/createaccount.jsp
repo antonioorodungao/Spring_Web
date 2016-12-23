@@ -34,8 +34,6 @@
                     $("#matchpassword").text("<fmt:message key='password.mismatch'/>");
                 }
             }
-
-
         }
 
         $(document).ready(onLoad);

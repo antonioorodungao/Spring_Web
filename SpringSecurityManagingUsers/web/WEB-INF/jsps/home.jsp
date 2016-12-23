@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: anton
@@ -15,6 +16,9 @@
 <a href="${pageContext.request.contextPath}/offers">Offers</a> <br>
 <a href="${pageContext.request.contextPath}/createoffer">Create Offer</a>
 
+<%--<a href="${pageContext.request.contextPath}/loggedout">Logout</a>--%>
+
+<p><a href="<c:url value="/j_spring_security_logout"/>">Logout</a> </p>
 
 </body>
 </html>
