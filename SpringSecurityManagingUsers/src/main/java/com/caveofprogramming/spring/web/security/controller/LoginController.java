@@ -8,6 +8,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,56 +36,63 @@ public class LoginController {
     }
 
 
-
     @RequestMapping("/admin")
-    public String showAdmin(Model model){
-
-        List<User> users = usersService.getAllUsers();
-        model.addAttribute("users", users);
+    public String showAdmin(Model model) {
+//        try {
+            List<User> users = usersService.getAllUsers();
+            model.addAttribute("users", users);
+//        }catch (Exception e){
+//            System.out.println(e.getClass());
+//        }
         return "admin";
     }
 
 
     @RequestMapping("/login")
-    public String showLogin(@RequestParam (value="error", required = false)  String error) throws Exception{
+    public String showLogin(@RequestParam(value = "error", required = false) String error) throws Exception {
 
-        if(error == null || error.equals("true")){
+        if (error == null || error.equals("true")) {
             return "login";
-        }else{
+        } else {
             return "home";
         }
 
     }
 
+    @RequestMapping("/accessdenied")
+    public String showDenied() {
+        return "accessdenied";
+    }
+
     @RequestMapping("/loggedout")
-    public String showlogout() throws Exception{
+    public String showlogout() throws Exception {
         return "logout";
     }
 
     @RequestMapping("/createaccount")
-    public String showNewAccount(Model model){
+    public String showNewAccount(Model model) {
         model.addAttribute("user", new User());
         return "createaccount";
     }
 
-    @RequestMapping(value="/accountcreated", method = RequestMethod.POST)
-    public String accountCreated(@Valid User user, BindingResult result) throws Exception{
+    @RequestMapping(value = "/accountcreated", method = RequestMethod.POST)
+    public String accountCreated(@Valid User user, BindingResult result) throws Exception {
 
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "createaccount";
         }
 
         user.setAuthority("user");
         user.setEnabled(true);
 
-        if(usersService.isUserExists(user.getUsername())){
+        if (usersService.isUserExists(user.getUsername())) {
             result.rejectValue("username", "duplicatekey.user");
             return "createaccount";
         }
 
         try {
             usersService.createUser(user);
-        }catch (DuplicateKeyException dk){
+        } catch (DuplicateKeyException dk) {
             result.rejectValue("username", "duplicatekey.user");
             return "createaccount";
         }
