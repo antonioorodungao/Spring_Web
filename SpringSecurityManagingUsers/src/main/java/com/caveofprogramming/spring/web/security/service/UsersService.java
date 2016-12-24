@@ -3,6 +3,7 @@ package com.caveofprogramming.spring.web.security.service;
 import com.caveofprogramming.spring.web.security.dao.User;
 import com.caveofprogramming.spring.web.security.dao.UsersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class UsersService {
         return usersDAO.isUserExists(username);
     }
 
+    @Secured("ROLE_ADMIN")
     public List<User> getAllUsers() {
         return usersDAO.getAllUsers();
     }

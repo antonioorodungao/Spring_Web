@@ -27,7 +27,7 @@
     <p><a href="<c:url value="/login"/>">Login</a> </p>
 </sec:authorize>
 
-<sec:authorize access="hasRole('admin')">
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 
     <p><a href="${pageContext.request.contextPath}/admin">Admin page</a></p>
 

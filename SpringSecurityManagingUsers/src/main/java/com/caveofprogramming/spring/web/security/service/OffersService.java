@@ -3,6 +3,7 @@ package com.caveofprogramming.spring.web.security.service;
 import com.caveofprogramming.spring.web.security.dao.Offer;
 import com.caveofprogramming.spring.web.security.dao.OffersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,8 @@ public class OffersService {
         return offersDAO.getOffers();
     }
 
+    //Curly bracket specifies the list of user roles which can execute the method
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     public boolean createOffer(Offer offer){
         return offersDAO.createOffer(offer);
     }
