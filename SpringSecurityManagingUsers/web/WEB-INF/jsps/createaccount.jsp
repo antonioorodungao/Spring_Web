@@ -62,12 +62,12 @@
         <tr>
             <td>Password</td>
             <td><sf:input class="control" id="passwd" path="password" name="password" rows="10" cols="10"
-                          type="text"></sf:input>
+                          type="password"></sf:input>
                 <sf:errors path="password" cssClass="error"></sf:errors></td>
         </tr>
         <tr>
             <td>Confirm Password</td>
-            <td><input class="control" id="confirmpass" name="confirmpass" type="text">
+            <td><input class="control" id="confirmpass" name="confirmpass" type="password">
                 <div id="matchpassword"></div>
                 </input>
             </td>
