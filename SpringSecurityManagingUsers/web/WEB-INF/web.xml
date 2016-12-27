@@ -36,7 +36,8 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:dao-context.xml classpath:service-context.xml classpath:security-context.xml</param-value>
+        <param-value>classpath:dao-context.xml classpath:service-context.xml classpath:security-context.xml
+        </param-value>
     </context-param>
     <!-- End for adding more context xml -->
 
@@ -51,9 +52,9 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- End of Filter -->
-
-
-
+    <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
 
 
 </web-app>
