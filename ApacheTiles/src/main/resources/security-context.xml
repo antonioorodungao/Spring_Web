@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--<security:authentication-manager>-->
+        <!--<security:authentication-provider>-->
+            <!--<security:user-service>-->
+                <!--<security:user name="antonio" authorities="admin" password="123"/>-->
+                <!--<security:user name="adnan" authorities="admin" password="adnan"/>-->
+            <!--</security:user-service>-->
+        <!--</security:authentication-provider>-->
+    <!--</security:authentication-manager>-->
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:jdbc-user-service data-source-ref="dataSource" authorities-by-username-query="select * from authorities where username=?"
+             users-by-username-query="select * from users where username=?" id="dbUserAuth"></security:jdbc-user-service>
+            <security:password-encoder ref="passwordEncoder"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <security:http use-expressions="true">
+        <!--<security:access-denied-handler error-page="/accessdenied" />-->
+        <security:intercept-url pattern="/createoffer" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/accessdenied" access="permitAll"/>
+        <!--<security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>-->
+        <security:intercept-url pattern="/home" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/" access="permitAll"/>
+        <security:intercept-url pattern="/static/**" access="permitAll"/>
+        <security:intercept-url pattern="/login" access="permitAll"/>
+        <security:intercept-url pattern="/logout" access="permitAll"/>
+        <security:intercept-url pattern="/createaccount" access="permitAll"/>
+        <security:intercept-url pattern="/error" access="permitAll"/>
+        <security:intercept-url pattern="/accountcreated" access="permitAll"/>
+
+        <security:form-login login-page="/login" authentication-failure-url="/login?error=true"></security:form-login>
+        <security:logout logout-success-url="/loggedout"/>
+        <security:remember-me key="offersAppKey" user-service-ref="dbUserAuth"></security:remember-me>
+    </security:http>
+    <!-- used for securing a method using a role -->
+    <security:global-method-security secured-annotations="enabled"/>
+
+    <bean id = "passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"></bean>
+
+
+
+</beans>
