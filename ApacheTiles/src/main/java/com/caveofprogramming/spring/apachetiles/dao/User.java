@@ -80,4 +80,23 @@ public class User {
     public void setAuthority(String authority) {
         this.authority = authority;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!username.equals(user.username)) return false;
+        return email.equals(user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = username.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
 }

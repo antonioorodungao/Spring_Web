@@ -52,6 +52,10 @@ public class UsersDAO {
         return jdbc.query("select * from users, authorities where users.username = authorities.username", new BeanPropertyRowMapper(User.class));
     }
 
+    public User getUser(String username){
+        return jdbc.queryForObject("select * from users, authorities where users.username = authorities.username and users.username = :username",new MapSqlParameterSource("username", username), new BeanPropertyRowMapper<User>(User.class));
+    }
+
 
 //    public static boolean getUser(User user) {
 //        BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
