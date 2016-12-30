@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.test.context.ActiveProfiles;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -57,7 +58,6 @@ public class OffersDAO {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id", id);
         return jdbc.queryForObject("select * from offers where id = :id", param, new RowMapper<Offer>() {
-            @Override
             public Offer mapRow(ResultSet rs, int i) throws SQLException {
                 Offer offer = new Offer();
                 offer.setName(rs.getString("name"));
