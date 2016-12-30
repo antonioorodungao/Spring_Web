@@ -8,12 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-<html>
-<head>
+
     <link href="${pageContext.request.contextPath}/static/css/main.css" type="text/css" rel="stylesheet"/>
     <title>Offers</title>
-</head>
-<body>
 
 <table class="offers">
     <tr><td>id</td><td>Name</td><td>Email</td><td>Text</td></tr>
@@ -31,8 +28,3 @@
     Enter ID: <input type="text" name="id"/>
     <input type="submit" name="submit" value="Submit">
 </form>
-
-
-
-</body>
-</html>

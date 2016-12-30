@@ -10,38 +10,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<html>
-<head>
-    <title>Create Offer</title>
-    <link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/script/jquery.js"
-            rel="script"></script>
+<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/script/jquery.js"
+        rel="script"></script>
 
-    <script type="text/javascript">
-        function onLoad() {
-            $("#passwd").on("keypress", checkPasswordsMatch());
-            $("#confirmpass").on("keypress", checkPasswordsMatch());
-        }
+<script type="text/javascript">
+    function onLoad() {
+        $("#passwd").on("keypress", checkPasswordsMatch());
+        $("#confirmpass").on("keypress", checkPasswordsMatch());
+    }
 
-        function checkPasswordsMatch() {
-            var password = $("#passwd").val();
-            var confirmpass = $("#confirmpass").val();
-            if (password.length > 3 || confirmpass.length > 3) {
+    function checkPasswordsMatch() {
+        var password = $("#passwd").val();
+        var confirmpass = $("#confirmpass").val();
+        if (password.length > 3 || confirmpass.length > 3) {
 
-                if (password == confirmpass) {
-                    $("#matchpassword").text("<fmt:message key='password.match'/>");
-                } else {
-                    $("#matchpassword").text("<fmt:message key='password.mismatch'/>");
-                }
+            if (password == confirmpass) {
+                $("#matchpassword").text("<fmt:message key='password.match'/>");
+            } else {
+                $("#matchpassword").text("<fmt:message key='password.mismatch'/>");
             }
         }
+    }
 
-        $(document).ready(onLoad);
-    </script>
-
-</head>
-<body>
-
+    $(document).ready(onLoad);
+</script>
 
 
 <!-- form method is important in post -->
@@ -78,7 +71,3 @@
         </tr>
     </table>
 </sf:form>
-
-
-</body>
-</html>

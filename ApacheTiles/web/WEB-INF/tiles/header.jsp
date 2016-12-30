@@ -2,7 +2,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css"/>
-<a class="title" href="<c:url value="/"/>">Offers</a>
+
+<a class="home" href="<c:url value="/home"/>">Home</a>
+<a class="title" href="<c:url value="/offers"/>">Offers</a>
 <sec:authorize access="isAuthenticated()">
     <p><a class="login" href="<c:url value="/j_spring_security_logout"/>">Logout</a> </p>
 </sec:authorize>

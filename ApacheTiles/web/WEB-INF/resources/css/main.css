@@ -90,3 +90,10 @@ a.title{
     color: white;
     font-size: xx-large;
 }
+
+a.home{
+    position: relative;
+    top:10px;
+    left: 10px;
+    color: white;
+}
